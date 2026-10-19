@@ -19,12 +19,12 @@ export async function assertCodeforcesHandleExists(handle) {
   }
 
   try {
-    const users = await codeforcesClient.getUser(key)
-    if (!users?.[0]?.handle) {
+    const user = await codeforcesClient.getUser(key)
+    if (!user?.handle) {
       throw new ApiError(400, 'CODEFORCES_HANDLE_NOT_FOUND', 'That Codeforces handle could not be found.')
     }
-    handleCache.set(key, { exists: true, handle: users[0].handle, checkedAt: Date.now() })
-    return users[0].handle
+    handleCache.set(key, { exists: true, handle: user.handle, checkedAt: Date.now() })
+    return user.handle
   } catch (error) {
     if (error instanceof ApiError && error.code === 'CODEFORCES_USER_NOT_FOUND') {
       handleCache.set(key, { exists: false, checkedAt: Date.now() })
