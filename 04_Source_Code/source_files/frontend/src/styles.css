@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ink text-slate-100 antialiased;
+    font-family: 'DM Sans', sans-serif;
+  }
+  html.high-contrast body {
+    background-color: #020617;
+    color: #f8fafc;
+  }
+  ::selection {
+    @apply bg-cyan-400/30 text-white;
+  }
+}
+@layer components {
+  .glass {
+    @apply border border-white/[.07] bg-white/[.035] backdrop-blur-xl;
+  }
+  html.high-contrast .glass {
+    border-color: rgba(34, 211, 238, 0.25);
+    background-color: rgba(15, 23, 42, 0.92);
+  }
+  .mesh {
+    background-image:
+      radial-gradient(circle at 20% 15%, rgba(34, 211, 238, 0.12), transparent 24%),
+      radial-gradient(circle at 82% 9%, rgba(139, 92, 246, 0.13), transparent 26%);
+  }
+  .dot-grid {
+    background-image: radial-gradient(rgba(148, 163, 184, 0.14) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
